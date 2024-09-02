@@ -63,6 +63,7 @@ impl MQTTConnector {
             .map_err(MQTTConnectorError::io)?
             .private_key(config.private_key_path)
             .map_err(MQTTConnectorError::io)?
+            .enable_server_cert_auth(false) // use self-signed certificate
             .finalize();
         let conn_opts = mqtt::ConnectOptionsBuilder::new_v5()
             .ssl_options(ssl_options)

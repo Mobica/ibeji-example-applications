@@ -5,7 +5,7 @@
 mod mqtt_connector;
 mod mqtt_connector_config;
 
-use std::{fs, path::Path};
+use std::{fs, env};
 
 use env_logger::{Builder, Target};
 use log::{info, LevelFilter};
@@ -18,7 +18,7 @@ use mqtt_connector_config::{Config, CONFIG_FILE};
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // Load the configuration settings
-    let config_file = fs::read_to_string(Path::new(env!("OUT_DIR")).join(CONFIG_FILE)).unwrap();
+    let config_file = fs::read_to_string(env::current_dir().unwrap().join(CONFIG_FILE)).unwrap();
     let config: Config = serde_json::from_str(&config_file).unwrap();
 
     // Setup logging
