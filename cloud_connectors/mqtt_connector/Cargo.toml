@@ -9,6 +9,7 @@ edition = "2021"
 license = "MIT"
 
 [dependencies]
+openssl = { version = "0.10.35", features = ["vendored"] }
 async-trait = { workspace = true }
 cloud-connector-proto = { workspace = true }
 env_logger = { workspace = true }
